@@ -45,6 +45,7 @@ end
 # gem 'debugger', group: [:development, :test]
 
 group :development, :test do
+  gem "thin"
   gem "rspec-rails"
   gem "guard-rspec", require: false
   gem "factory_girl_rails"

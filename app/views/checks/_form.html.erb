@@ -6,6 +6,31 @@
     </div>
   </div>
 
+  <div class="control-group">
+    <%= f.label :host, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :host, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :path, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :path, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :headers, :class => 'control-label' %>
+    <%= f.fields_for :check_headers do |builder| %>
+      <%= render 'check_header_fields', :f => builder %>
+    <% end %>
+
+    <div class="controls">
+      <%= link_to_add_fields "Add", f, :check_headers %>
+    </div>
+  </div>
+
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

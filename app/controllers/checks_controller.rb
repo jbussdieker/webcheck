@@ -1,5 +1,5 @@
 class ChecksController < ApplicationController
-  before_action :set_check, only: [:show, :edit, :update, :destroy]
+  before_action :set_check, only: [:show, :edit, :update, :destroy, :run]
 
   # GET /checks
   # GET /checks.json
@@ -61,6 +61,16 @@ class ChecksController < ApplicationController
     end
   end
 
+  # GET /checks/1/run
+  # GET /checks/1/run.json
+  def run
+    @check.run
+    respond_to do |format|
+      format.html { redirect_to checks_url }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_check
@@ -69,6 +79,6 @@ class ChecksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def check_params
-      params.require(:check).permit(:name)
+      params.require(:check).permit(:name, :host, :path, check_headers_attributes: [:id, :name, :value, :_destroy])
     end
 end
